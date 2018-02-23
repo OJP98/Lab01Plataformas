@@ -10,34 +10,35 @@ import java.util.List;
  * Created by Oscar Juarez on 19/02/2018.
  */
 
-public class Contacto implements Parcelable{
+public class Contacto implements Parcelable {
     private String nombre, apellido, numero;
-    private List<String> amigos;
+    private List<Musica> musica;
 
     /**
      * El constructor del objeto tipo contacto.
-     * @param nombre: El nombre del contacto
+     * @param nombre:   El nombre del contacto
      * @param apellido: El apellido del contacto.
-     * @param numero: El numero del contacto.
-     * @param amigos: La lista de amigos del usuario.
+     * @param numero:   El numero del contacto.
+     * @param musica:   La lista de amigos del usuario.
      */
-    public Contacto(String nombre, String apellido, String numero, List<String> amigos) {
+    public Contacto(String nombre, String apellido, String numero, List<Musica> musica) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.numero = numero;
-        this.amigos = amigos;
+        this.musica = musica;
     }
 
     /**
      * Connstruye el parcel en base al intent que se le envia de parametro.
+     *
      * @param in: El intent recibido.
      */
-    protected Contacto(Parcel in){
+    protected Contacto(Parcel in) {
         this.nombre = in.readString();
         this.apellido = in.readString();
         this.numero = in.readString();
-        amigos = new ArrayList<>();
-        in.readStringList(amigos);
+        musica = new ArrayList<Musica>();
+        in.createTypedArrayList((Creator<Object>) musica);
 
     }
 
@@ -58,6 +59,7 @@ public class Contacto implements Parcelable{
 
     /**
      * Devuelve el nombre del contacto.
+     *
      * @return: el nombre
      */
     public String getNombre() {
@@ -66,6 +68,7 @@ public class Contacto implements Parcelable{
 
     /**
      * Devuelve el apellido del contacto.
+     *
      * @return: el apellido
      */
     public String getApellido() {
@@ -74,6 +77,7 @@ public class Contacto implements Parcelable{
 
     /**
      * Debuelve el numero del contacto
+     *
      * @return: El numero
      */
     public String getNumero() {
@@ -82,12 +86,16 @@ public class Contacto implements Parcelable{
 
     /**
      * Retorna las lista de amigos
+     *
      * @return: lista tipo string de amigos
      */
-    public List<String> getAmigos() { return amigos; }
+    public List<Musica> getMusica() {
+        return musica;
+    }
 
     /**
      * Convierte el objeto en un string
+     *
      * @return: El string personalizado
      */
     @Override
@@ -102,14 +110,15 @@ public class Contacto implements Parcelable{
 
     /**
      * Empaqueta la informacion del contacto como parcel
+     *
      * @param parcel: el parcel a evaluar
-     * @param i: la posicion.
+     * @param i:      la posicion.
      */
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(nombre);
         parcel.writeString(apellido);
         parcel.writeString(numero);
-        parcel.writeStringList(amigos);
+        parcel.writeTypedList(musica);
     }
 }

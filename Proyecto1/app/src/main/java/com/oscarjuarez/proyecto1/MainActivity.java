@@ -2,6 +2,7 @@ package com.oscarjuarez.proyecto1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Se definen las listas con las que se estara manejando el programa
     private ArrayList<Contacto> listaContacto;
-    private ArrayList<String> amigos;
+    private ArrayList<Musica> musica;
 
     /**
      * Ejecuta una serie de instrucciones al crear el programa
@@ -28,18 +29,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //Crea una arraylist tipo amigos y agrega a 3 personas
-        amigos = new ArrayList<>();
-        amigos.add("Juan");
-        amigos.add("Andres");
-        amigos.add("Mario");
+        //Crea una arraylist tipo musica y agrega a 4 elementos
+        musica = new ArrayList<>();
+
+        musica.add(new Musica("Electro","Deadmau5"));
+        musica.add(new Musica("Clasica","Bethoven"));
+        musica.add(new Musica("Rock","Guns & Roses"));
+        musica.add(new Musica("Pop","Lady Gaga"));
 
         //Crea 4 objetos tipo contacto, junto con la instancia de la lista. Agrega dichos objetos a la lista
         listaContacto = new ArrayList<>();
-        listaContacto.add(new Contacto("Oscar", "Juarez","12345678", amigos));
-        listaContacto.add(new Contacto("Javier", "Carpio","87654321", amigos));
-        listaContacto.add(new Contacto("Jose", "Cifuentes","45612378", amigos));
-        listaContacto.add(new Contacto("Mauricio", "Juarez","123789456", amigos));
+        listaContacto.add(new Contacto("Oscar", "Juarez","12345678", musica));
+        listaContacto.add(new Contacto("Javier", "Carpio","87654321", musica));
+        listaContacto.add(new Contacto("Jose", "Cifuentes","45612378", musica));
+        listaContacto.add(new Contacto("Mauricio", "Juarez","123789456", musica));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 nuevoIntent.putExtra("nombre",arrayAdapter.getItem(position).getNombre());
                 nuevoIntent.putExtra("apellido",arrayAdapter.getItem(position).getApellido());
                 nuevoIntent.putExtra("numero",arrayAdapter.getItem(position).getNumero());
-                nuevoIntent.putExtra("amigos",amigos);
+                nuevoIntent.putExtra("musica", musica);
 
                 //Se envian dichas variables.
                 startActivityForResult(nuevoIntent, 1);
