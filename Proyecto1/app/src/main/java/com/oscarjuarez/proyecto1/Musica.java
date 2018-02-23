@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by Usuario on 22/02/2018.
+ * Created by Oscar Juarez on 22/02/2018.
  */
 
 public class Musica implements Parcelable {
