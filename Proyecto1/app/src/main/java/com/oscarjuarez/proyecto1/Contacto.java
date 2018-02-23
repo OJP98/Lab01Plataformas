@@ -42,6 +42,9 @@ public class Contacto implements Parcelable{
     }
 
     public static final Creator<Contacto> CREATOR = new Creator<Contacto>() {
+        /**
+         * Metodo que crea el parcel del objeto
+         */
         @Override
         public Contacto createFromParcel(Parcel in) {
             return new Contacto(in);
@@ -53,20 +56,40 @@ public class Contacto implements Parcelable{
         }
     };
 
+    /**
+     * Devuelve el nombre del contacto.
+     * @return: el nombre
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * Devuelve el apellido del contacto.
+     * @return: el apellido
+     */
     public String getApellido() {
         return apellido;
     }
 
+    /**
+     * Debuelve el numero del contacto
+     * @return: El numero
+     */
     public String getNumero() {
         return numero;
     }
 
+    /**
+     * Retorna las lista de amigos
+     * @return: lista tipo string de amigos
+     */
     public List<String> getAmigos() { return amigos; }
 
+    /**
+     * Convierte el objeto en un string
+     * @return: El string personalizado
+     */
     @Override
     public String toString() {
         return nombre;
@@ -77,6 +100,11 @@ public class Contacto implements Parcelable{
         return 0;
     }
 
+    /**
+     * Empaqueta la informacion del contacto como parcel
+     * @param parcel: el parcel a evaluar
+     * @param i: la posicion.
+     */
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(nombre);

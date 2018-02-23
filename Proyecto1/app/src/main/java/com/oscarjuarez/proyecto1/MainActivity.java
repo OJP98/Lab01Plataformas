@@ -17,17 +17,24 @@ import java.util.concurrent.atomic.AtomicStampedReference;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Se definen las listas con las que se estara manejando el programa
     private ArrayList<Contacto> listaContacto;
     private ArrayList<String> amigos;
 
+    /**
+     * Ejecuta una serie de instrucciones al crear el programa
+     * @param savedInstanceState: El estado instanciado por el view.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        //Crea una arraylist tipo amigos y agrega a 3 personas
         amigos = new ArrayList<>();
         amigos.add("Juan");
         amigos.add("Andres");
         amigos.add("Mario");
 
+        //Crea 4 objetos tipo contacto, junto con la instancia de la lista. Agrega dichos objetos a la lista
         listaContacto = new ArrayList<>();
         listaContacto.add(new Contacto("Oscar", "Juarez","12345678", amigos));
         listaContacto.add(new Contacto("Javier", "Carpio","87654321", amigos));
@@ -40,22 +47,35 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Se le asigna un ListView al objeto
         final ListView lv = findViewById(R.id.listView_activity1);
 
+        //Se imprime la lista tipo contacto en el listView
         final ArrayAdapter<Contacto> arrayAdapter = new ArrayAdapter<>
                 (this, android.R.layout.simple_list_item_1, listaContacto);
 
         lv.setAdapter(arrayAdapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            /**
+             * Metodo que permite  ejecutar diferentes funciones conforme a la posicion en la que
+             * haga click el usuario sobre la lista.
+             * @param parent: El padre del view
+             * @param view: El view a usar
+             * @param position: La posicion que apreta el usario
+             * @param id: El id del objeto
+             */
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                //Se crea un nuevo intent y se envian las variables conforme a la posicion de la lista
                 Intent nuevoIntent = new Intent(MainActivity.this, ExtraActivity.class);
                 nuevoIntent.putExtra("nombre",arrayAdapter.getItem(position).getNombre());
                 nuevoIntent.putExtra("apellido",arrayAdapter.getItem(position).getApellido());
                 nuevoIntent.putExtra("numero",arrayAdapter.getItem(position).getNumero());
                 nuevoIntent.putExtra("amigos",amigos);
+
+                //Se envian dichas variables.
                 startActivityForResult(nuevoIntent, 1);
 
             }
