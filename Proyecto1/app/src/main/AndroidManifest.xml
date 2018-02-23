@@ -19,11 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".SecondActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_second"
-            android:theme="@style/FullscreenTheme"></activity>
+        <activity android:name=".ExtraActivity"></activity>
     </application>
 
 </manifest>

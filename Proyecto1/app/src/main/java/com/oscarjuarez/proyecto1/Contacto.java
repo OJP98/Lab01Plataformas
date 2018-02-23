@@ -3,23 +3,29 @@ package com.oscarjuarez.proyecto1;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Oscar Juarez on 19/02/2018.
  */
 
 public class Contacto implements Parcelable{
     private String nombre, apellido, numero;
+    private List<String> amigos;
 
     /**
      * El constructor del objeto tipo contacto.
      * @param nombre: El nombre del contacto
      * @param apellido: El apellido del contacto.
-     * @param numero: El numero del contacto
+     * @param numero: El numero del contacto.
+     * @param amigos: La lista de amigos del usuario.
      */
-    public Contacto(String nombre, String apellido, String numero) {
+    public Contacto(String nombre, String apellido, String numero, List<String> amigos) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.numero = numero;
+        this.amigos = amigos;
     }
 
     /**
@@ -30,6 +36,8 @@ public class Contacto implements Parcelable{
         this.nombre = in.readString();
         this.apellido = in.readString();
         this.numero = in.readString();
+        amigos = new ArrayList<>();
+        in.readStringList(amigos);
 
     }
 
@@ -57,6 +65,8 @@ public class Contacto implements Parcelable{
         return numero;
     }
 
+    public List<String> getAmigos() { return amigos; }
+
     @Override
     public String toString() {
         return nombre;
@@ -72,5 +82,6 @@ public class Contacto implements Parcelable{
         parcel.writeString(nombre);
         parcel.writeString(apellido);
         parcel.writeString(numero);
+        parcel.writeStringList(amigos);
     }
 }

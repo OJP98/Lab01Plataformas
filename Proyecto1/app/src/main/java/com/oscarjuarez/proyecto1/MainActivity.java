@@ -10,20 +10,29 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicStampedReference;
 
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Contacto> listaContacto;
+    private ArrayList<String> amigos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        amigos = new ArrayList<>();
+        amigos.add("Juan");
+        amigos.add("Andres");
+        amigos.add("Mario");
+
         listaContacto = new ArrayList<>();
-        listaContacto.add(new Contacto("Oscar", "Juarez","12345678"));
-        listaContacto.add(new Contacto("Javier", "Carpio","87654321"));
-        listaContacto.add(new Contacto("Jose", "Cifuentes","45612378"));
-        listaContacto.add(new Contacto("Mauricio", "Juarez","123789456"));
+        listaContacto.add(new Contacto("Oscar", "Juarez","12345678", amigos));
+        listaContacto.add(new Contacto("Javier", "Carpio","87654321", amigos));
+        listaContacto.add(new Contacto("Jose", "Cifuentes","45612378", amigos));
+        listaContacto.add(new Contacto("Mauricio", "Juarez","123789456", amigos));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -42,10 +51,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent nuevoIntent = new Intent(MainActivity.this, SecondActivity.class);
+                Intent nuevoIntent = new Intent(MainActivity.this, ExtraActivity.class);
                 nuevoIntent.putExtra("nombre",arrayAdapter.getItem(position).getNombre());
                 nuevoIntent.putExtra("apellido",arrayAdapter.getItem(position).getApellido());
                 nuevoIntent.putExtra("numero",arrayAdapter.getItem(position).getNumero());
+                nuevoIntent.putExtra("amigos",amigos);
                 startActivityForResult(nuevoIntent, 1);
 
             }
