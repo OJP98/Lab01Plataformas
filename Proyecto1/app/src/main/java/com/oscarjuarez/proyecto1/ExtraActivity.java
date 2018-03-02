@@ -19,7 +19,7 @@ public class ExtraActivity extends AppCompatActivity {
         String getNombre = getIntent().getStringExtra("nombre");
         String getApellido = getIntent().getStringExtra("apellido");
         String getNumero = getIntent().getStringExtra("numero");
-        ArrayList<Musica> getMusica = getIntent().getParcelableArrayListExtra("musica");
+        GeneroMusical getGenero = getIntent().getParcelableExtra("genero");
 
         //Se decalaran objetos tipo view, se les asigna un ID especifico y luego se imprime
         //los datos que se pasaron de la activity principal.
@@ -32,13 +32,16 @@ public class ExtraActivity extends AppCompatActivity {
         TextView viewTelefono = findViewById(R.id.numero_extra);
         viewTelefono.setText("El numero es: " + getNumero);
 
+        TextView viewGenero = findViewById(R.id.textView3);
+        viewGenero.setText(getGenero.toString());
+
         //Finalmente, se imprime el nombre de los 'amigos' de los contactos con la ayuda de
         //un arrayadapter
-
-        ListView viewAmigos = findViewById(R.id.listview_extra);
-        final ArrayAdapter<Musica> arrayAdapter = new ArrayAdapter<>
-                (this, android.R.layout.simple_list_item_1, getMusica);
-
-        viewAmigos.setAdapter(arrayAdapter);
+//
+//        ListView viewAmigos = findViewById(R.id.listview_extra);
+//        final ArrayAdapter<Musica> arrayAdapter = new ArrayAdapter<>
+//                (this, android.R.layout.simple_list_item_1, getMusica);
+//
+//        viewAmigos.setAdapter(arrayAdapter);
     }
 }

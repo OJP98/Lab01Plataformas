@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 nuevoIntent.putExtra("nombre",arrayAdapter.getItem(position).getNombre());
                 nuevoIntent.putExtra("apellido",arrayAdapter.getItem(position).getApellido());
                 nuevoIntent.putExtra("numero",arrayAdapter.getItem(position).getNumero());
-                nuevoIntent.putExtra("musica", musica);
+                nuevoIntent.putExtra("genero", arrayAdapter.getItem(position).getGeneroMusical());
 
                 //Se envian dichas variables.
                 startActivityForResult(nuevoIntent, 1);
@@ -162,15 +162,20 @@ public class MainActivity extends AppCompatActivity {
             public void subscribe(ObservableEmitter<Object> e) throws Exception {
 
                 //Crea 4 objetos tipo contacto, junto con la instancia de la lista. Agrega dichos objetos a la lista
-                Contacto Oscar =  new Contacto("Oscar", "Juarez","12345678");
-                Contacto Javier = new Contacto ("Javier", "Carpio","87654321");
-                Contacto Jose = new Contacto("Jose", "Cifuentes","45612378");
-                Contacto Mauricio = new Contacto("Mauricio", "Juarez","123789456");
+                GeneroMusical generoOscar = new GeneroMusical("Deadmau5","Electronica");
+                GeneroMusical generoJose = new GeneroMusical("Guns & Roses","Rock");
+                GeneroMusical generoJavier = new GeneroMusical("Los Tigres del Norte","Banda");
+                GeneroMusical generoMauricio = new GeneroMusical("Lady Gaga","Pop");
 
-                listaContacto.add(Oscar);
-                listaContacto.add(Javier);
-                listaContacto.add(Jose);
-                listaContacto.add(Mauricio);
+                Contacto Oscar =  new Contacto("Oscar", "Juarez","12345678", generoOscar);
+                Contacto Javier = new Contacto ("Javier", "Carpio","87654321", generoJavier);
+                Contacto Jose = new Contacto("Jose", "Cifuentes","45612378",generoJose);
+                Contacto Mauricio = new Contacto("Mauricio", "Juarez","123789456",generoMauricio);
+
+//                listaContacto.add(Oscar);
+//                listaContacto.add(Javier);
+//                listaContacto.add(Jose);
+//                listaContacto.add(Mauricio);
                 contactRepository.insertContact(Oscar);
                 contactRepository.insertContact(Javier);
                 contactRepository.insertContact(Jose);
