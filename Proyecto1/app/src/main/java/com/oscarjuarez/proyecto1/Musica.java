@@ -1,5 +1,7 @@
 package com.oscarjuarez.proyecto1;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Ignore;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -9,12 +11,17 @@ import android.os.Parcelable;
 
 public class Musica implements Parcelable {
 
-    private String genero, artista;
+    @ColumnInfo(name = "genero")
+    private String genero;
+
+    @ColumnInfo(name = "artista")
+    private String artista;
 
     public Musica(String genero, String artista) {
         this.genero = genero;
         this.artista = artista;
     }
+
 
     public String getGenero() {
         return genero;
@@ -22,6 +29,18 @@ public class Musica implements Parcelable {
 
     public String getartista() {
         return artista;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getArtista() {
+        return artista;
+    }
+
+    public void setArtista(String artista) {
+        this.artista = artista;
     }
 
     @Override

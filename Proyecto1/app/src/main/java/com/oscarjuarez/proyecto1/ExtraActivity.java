@@ -34,6 +34,7 @@ public class ExtraActivity extends AppCompatActivity {
 
         //Finalmente, se imprime el nombre de los 'amigos' de los contactos con la ayuda de
         //un arrayadapter
+
         ListView viewAmigos = findViewById(R.id.listview_extra);
         final ArrayAdapter<Musica> arrayAdapter = new ArrayAdapter<>
                 (this, android.R.layout.simple_list_item_1, getMusica);
